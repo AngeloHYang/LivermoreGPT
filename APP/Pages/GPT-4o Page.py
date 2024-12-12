@@ -59,8 +59,6 @@ def chatFunction():
     theMessage[-1]["content"] = prompt
     theMessage.insert(0, {"role": "system", "content": bio})
 
-    st.write(theMessage)
-
     stream = client.chat.completions.create(
         model="gpt-4o",
         messages= theMessage,

@@ -2,7 +2,7 @@ import streamlit as st
 import ollama
 
 
-def ChatPageTemplate(subHeader = None):
+def ChatPageTemplate(subHeader = None, chatFunction = None, streamSupported = False):
 
     st.title("LivermoreGPT")
     if subHeader:
@@ -40,21 +40,11 @@ def ChatPageTemplate(subHeader = None):
 
             # st.session_state.messages.append({"role": "assistant", "content": response})
 
-            stream = ollama.chat(
-                model='qwen2.5:7b',
-                messages=[
-                    {"role": m["role"], "content": m["content"]}
-                    for m in st.session_state.messages
-                ],
-                stream=True,
-            )
+            stream = chatFunction();
 
-            # st.write(type(stream))
-
-            def wrapper_stream(stream):
-                for message in stream:
-                    yield message['message']['content']
-
-            response = st.write_stream(wrapper_stream(stream))
+            if streamSupported:
+                response = st.write_stream(stream)
+            else:
+                response = st.write(stream)
 
         st.session_state.messages.append({"role": "assistant", "content": response})

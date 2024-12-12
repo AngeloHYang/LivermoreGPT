@@ -2,11 +2,13 @@ import streamlit as st
 import ollama
 
 
-def ChatPageTemplate(subHeader = None, chatFunction = None, streamSupported = False):
+def ChatPageTemplate(subHeader = None, description = None, chatFunction = None, streamSupported = False):
 
     st.title("LivermoreGPT")
     if subHeader:
         st.subheader(subHeader)
+    if description:
+        st.write(description)
 
     # Initialize chat history
     if "messages" not in st.session_state:
@@ -27,19 +29,6 @@ def ChatPageTemplate(subHeader = None, chatFunction = None, streamSupported = Fa
 
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
-            #     stream = client.chat.completions.create(
-            #         model=st.session_state["openai_model"],
-            #         messages=[
-            #             {"role": m["role"], "content": m["content"]}
-            #             for m in st.session_state.messages
-            #         ],
-            #         stream=True,
-            #     )
-            #     st.write(type(stream))
-            #     response = st.write_stream(stream)
-
-            # st.session_state.messages.append({"role": "assistant", "content": response})
-
             stream = chatFunction();
 
             if streamSupported:

@@ -43,7 +43,7 @@ if prompt := st.chat_input("What is up?"):
 
     # st.session_state.messages.append({"role": "assistant", "content": response})
 
-
+        st.write("---")
         stream = ollama.chat(
             model='qwen2.5:7b',
             messages=[
@@ -52,6 +52,11 @@ if prompt := st.chat_input("What is up?"):
             ],
             stream=True,
         )
+        st.write([
+                {"role": m["role"], "content": m["content"]}
+                for m in st.session_state.messages
+            ])
+        st.write("---")
 
         # st.write(type(stream))
 

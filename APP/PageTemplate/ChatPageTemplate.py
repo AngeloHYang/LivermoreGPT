@@ -1,5 +1,4 @@
 import streamlit as st
-import ollama
 
 
 def ChatPageTemplate(subHeader = None, description = None, chatFunction = None, streamSupported = False):

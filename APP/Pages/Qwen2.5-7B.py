@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer
 import faiss
 from streamlit import subheader
 
-from APP.Utilities.LoadData import load_doc, load_local_index, load_sentence_transformer_model
+from Utilities.LoadData import load_doc, load_local_index, load_sentence_transformer_model
 
 with st.spinner("Loading LivermoreGPT with Qwen2.5:7b via Ollama..."):
     load_doc()

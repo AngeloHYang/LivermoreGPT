@@ -4,7 +4,7 @@ import streamlit as st
 import PageTemplate.ChatPageTemplate as ChatPageTemplate
 from openai import OpenAI
 
-from APP.Utilities.LoadData import load_doc, load_openai_index
+from Utilities.LoadData import load_doc, load_openai_index
 
 # Set OpenAI API key from Streamlit secrets
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])

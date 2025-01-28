@@ -8,7 +8,7 @@ from streamlit import subheader
 
 from Utilities.LoadData import load_doc, load_local_index, load_sentence_transformer_model
 
-with st.spinner("Loading LivermoreGPT with Qwen2.5:7b via Ollama..."):
+with st.spinner("Loading LivermoreGPT with DeepSeek-R1:8B via Ollama..."):
     load_doc()
     load_sentence_transformer_model()
     load_local_index()
@@ -51,7 +51,7 @@ def chatFunction():
 
 
     stream = ollama.chat(
-        model='Qwen2.5:7b',
+        model='deepseek-r1:8b',
         messages= theMessage,
         stream=True,
     )
@@ -63,7 +63,7 @@ def chatFunction():
     return wrapper_stream(stream)
 
 ChatPageTemplate.ChatPageTemplate(
-    subHeader="LivermoreGPT with Qwen2.5:7b via Ollama",
+    subHeader="LivermoreGPT with DeepSeek-R1:8B via Ollama",
     chatFunction=chatFunction,
     streamSupported=True
 )
